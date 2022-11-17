@@ -7,6 +7,6 @@ Brute-force algorithm is the easiest algorithm to solve many search problem in g
 ### 2. Pseudo code:
 The following Codeblock quickly go through the procedure of Brute-force algorithm.
 
-'''python
+```python
 # Test
-'''
+```
