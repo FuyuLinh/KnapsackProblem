@@ -15,11 +15,11 @@ for i in item:
   Combination.extend(newsubsets)
   
 # Find the optimal solution, which satisfied the highest value that can be reached but not excced the capacity of the Knapsack
-for each element in the list of all combinations:
-  Sum of all value in the element
-  Sum of the weight in the element
-  check to satisfy all class appears at least once
+for each_element in the_list_of_all_combinations:
+  Sum_of_value in element
+  Sum_of_weight in element
+  check_all_class_appears_at_least_once
         
-  if Sum of weight <= Capacity and Sum of value > Best value recorded and all class appeared at least once:
-    Best Value recorded = Sum of value
+  if Sum_of_weight <= Capacity and Sum_of_value > Best_value_recorded and all_class_appears_at_least_once:
+    Best_value_recorded = Sum_of_value
 ```
