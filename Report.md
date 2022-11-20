@@ -23,3 +23,13 @@ for each_element in the_list_of_all_combinations:
   if Sum_of_weight <= Capacity and Sum_of_value > Best_value_recorded and all_class_appears_at_least_once:
     Best_value_recorded = Sum_of_value
 ```
+### 3. Evaluation:
+Working out all possible subsets takes $2^{N}$.
+
+Calculating sum of each subset from 1 to N => Take N x $2^{N}$.
+
+=> Time of Complexity: O (N x $2^{N}$)
+### 4. Discussion:
+This algorithm can help solving Knapsack problem with small datasets. However when facing with bigger datasets, the time to execute this algorithm will be much longer compared to other algorithms.
+### 5. References:
+https://gist.github.com/YJDave/c9ad61598bbe6d059ef0396b77bbd612
