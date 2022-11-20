@@ -3,6 +3,9 @@ from typing import List
 from read import read_txt
 import csv
 import argparse
+import time
+
+
 class Item:
     def __init__(self, name, weight, value):
         self.name = name
@@ -48,10 +51,7 @@ REPRODUCTION_RATE = 0.15
 def generate_initial_population(items,count=10) -> List[Individual]:
     population = set()
 
-    # generate initial population having `count` individuals
     while len(population) != count:
-        # pick random bits one for each item and 
-        # create an individual 
         bits = [
             random.choice([0, 1])
             for _ in items
@@ -63,14 +63,8 @@ def generate_initial_population(items,count=10) -> List[Individual]:
 def selection(population: List[Individual]) -> List[Individual]:
     parents = []
     
-    # randomly shuffle the population
     random.shuffle(population)
 
-    # we use the first 4 individuals
-    # run a tournament between them and
-    # get two fit parents for the next steps of evolution
-
-    # tournament between first and second
     if population[0].fitness() > population[1].fitness():
         parents.append(population[0])
     else:
@@ -107,7 +101,6 @@ def next_generation(population: List[Individual],n) -> List[Individual]:
     while len(next_gen) < len(population):
         children = []
 
-        # we run selection and get parents
         parents = selection(population)
 
         # reproduction
@@ -162,7 +155,7 @@ def get_items(n,weight,value,label):
         items.append(Item(label[i],weight[i],value[i]))
     return items
 
-def save_txt(solution,score,size,i):
+def save_solution(solution,score,size,i):
     path = '../genetic_algorithm/output_'+ size + f'/OUTPUT_{i}.txt'
     fitness =[score]
     found_solution = solution
@@ -171,6 +164,16 @@ def save_txt(solution,score,size,i):
         file.writerow(fitness)
         file.writerow(found_solution)
 
+def save_experiment(n,time_computing):
+    # save n, save time-out
+    path = '../genetic_algorithm/experiment.txt'
+    row = [n,time_computing]
+    with open(path, mode='a') as filehandle:
+        file = csv.writer(filehandle, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        file.writerow(row)
+
+
+    
 parser = argparse.ArgumentParser()
 parser.add_argument("size", type=str, help="the size")
 parser.add_argument("index", type=int, help="the index of INPUT file")
@@ -180,7 +183,10 @@ if __name__ == '__main__':
     n,capacity,num_class,weight,value,label = read_txt(size=args.size,i=args.index)
     MAX_KNAPSACK_WEIGHT = capacity[0]
     ITEMS =get_items(n[0],weight,value,label)
+    #start_time = time.time()
     solution,score = solution(ITEMS,n[0])
     print(solution,score)
-    save_txt(solution,score,args.size,args.index)
+    save_solution(solution,score,args.size,args.index)
+    #time_computing = time.time() - start_time
+    #save_experiment(n[0],time_computing)
         
