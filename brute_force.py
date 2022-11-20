@@ -32,6 +32,7 @@ def get_items(n,weight,value,label):
 def brute_force(item, m, Capacity):
     BValue = 0
     ClassCheck = set()
+    Bestset = []
 
     # Create Subsets
     Combination = [[]]
@@ -52,8 +53,16 @@ def brute_force(item, m, Capacity):
         
         if Weight_sum <= Capacity and Val_sum > BValue and len(ClassCheck) >= m:
             BValue = Val_sum
+            Bestset = listElement
 
-    print(BValue)
+    resultset = []
+    for i in item:
+        for j in Bestset:
+            if i[0] == j[0] and i[1] == j[1] and i[2] == j[2]:
+                resultset.append("1")
+                break
+        resultset.append("0")
+    return BValue, resultset
 
 #item = [(85, 79, 1),(26, 32, 1),(48, 47, 2),(21, 18, 1),(22, 26, 2),(95, 85, 1),(43, 33, 1),(45, 40, 2),(55, 45, 2),(52, 59, 2)]
 #m = 2
