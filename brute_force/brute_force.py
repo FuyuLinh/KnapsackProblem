@@ -13,8 +13,8 @@ class Item:
         self.value = value
 
 def read_txt(size,i):
-    # path = 'data/' + size + f'/INPUT_{i}.txt'
-    with open("D:\FUYU LINH\Document\YEAR 3\SEM 1\ARTIFICIAL INTELLIGENT\Projects\KnapsackProblem\data\small\INPUT_1.txt") as csv_file:
+    path = '../data/' + size + f'/INPUT_{i}.txt'
+    with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         List = [item for item in csv_reader]
         n = [int(item) for item in List[0]]
@@ -67,7 +67,7 @@ def brute_force(item, m, Capacity):
     return BValue, resultset
 
 def save_txt(resultset,BValue,size,i):
-    path = ''+ size + f'/OUTPUT_{i}.txt'
+    path = '../brute_force/output_'+ size + f'/OUTPUT_{i}.txt'
     totalvalue =[BValue]
     found_solution = resultset
     with open(path, mode='w') as filehandle:
@@ -75,10 +75,10 @@ def save_txt(resultset,BValue,size,i):
         file.writerow(totalvalue)
         file.writerow(found_solution)
 
-#parser = argparse.ArgumentParser()
-#parser.add_argument("size", type=str, help="the size")
-#parser.add_argument("index", type=int, help="the index of INPUT file")
-#args = parser.parse_args()
+parser = argparse.ArgumentParser()
+parser.add_argument("size", type=str, help="the size")
+parser.add_argument("index", type=int, help="the index of INPUT file")
+args = parser.parse_args()
 
 if __name__ == '__main__':
     n,capacity,num_class,weight,value,label = read_txt("small",1)
