@@ -23,3 +23,17 @@ for each_element in the_list_of_all_combinations:
   if Sum_of_weight <= Capacity and Sum_of_value > Best_value_recorded and all_class_appears_at_least_once:
     Best_value_recorded = Sum_of_value
 ```
+### 3. Evaluation:
+Working out all possible subsets takes $2^{N}$.
+
+Calculating sum of each subset from 1 to N => Take N x $2^{N}$.
+
+=> Time of Complexity: O (N x $2^{N}$)
+### 4. Test case:
+We use the same test case "data" which has been divided into two sub-folder "small" datasets and "large" datasets for all of the algorithms in our project. The small datasets involve less than 50 items per case. The large dataset include over 50 items per case.
+### 5 Evaluation:
+Brute force algorithm is easier to implement. However it is not as efficient as the other algorithms and it cannot optimize this project's problem.
+### 6. Discussion:
+This algorithm can help solving Knapsack problem with small datasets. However when facing with bigger datasets, the time to execute this algorithm will be much longer compared to other algorithms.
+### 7. References:
+https://gist.github.com/YJDave/c9ad61598bbe6d059ef0396b77bbd612
