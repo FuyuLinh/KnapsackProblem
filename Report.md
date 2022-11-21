@@ -1,6 +1,6 @@
 Report of Group's Project 01
 ============================
-## Individual's detailed Information:
+# Individual's detailed Information:
 1. Nguyễn Hà Ngọc Linh - 20125061
 2. Phạm Thanh Tú - 20125121
 3. Phan Huỳnh Tấn Phát -
@@ -18,8 +18,8 @@ The algorithms have been assigned in the following plan:
 - Phan Huỳnh Tấn Phát: "Branch and Bound algorithm"
 - Phạm Quốc Thiệu: "Local Beam search algorithm"
 
-## Self-assessment for completion level for each requirement:
-### 1. Brute-force algorithm:
+# Self-assessment for completion level for each requirement:
+## 1. Brute-force algorithm:
 Completed works:
 - Implementation
 - Showing videos of process
@@ -29,7 +29,7 @@ Completed works:
 Incompleted works: None recorded
 
 Completion level: 9.5/10
-### 2. Genetic algorithm:
+## 2. Genetic algorithm:
 Completed works:
 - Implementation
 - Running Test cases
@@ -39,17 +39,16 @@ Completed works:
 Incompleted works: None recorded
 
 Completion level: 10/10
-### 3. Branch and bound algorithm:
+## 3. Branch and bound algorithm:
 Completed works:
 - Implementation
 
 Incompleted works:
 
-### 4. Local Beam search algorithm:
+## 4. Local Beam search algorithm:
 Completed works:
 - Implementation
 
-# Individual's report:
 # Algorithm 1: Brute force algorithm:
 ## 1.1. Description:
 Brute-force algorithm is the easiest algorithm to solve many search problem in general and the Knapsack's problem itself. The idea of brute-force algorithm applied in this problem is to create all possible combinations created from the list of items, then run through every combinations to find the best match for the dataset.
@@ -86,7 +85,8 @@ However brute force can only generate small datasets, we run the test case of 10
 ## 1.7. Discussion:
 This algorithm can help solving Knapsack problem with small datasets. However when facing with bigger datasets, the time to execute this algorithm will be much longer compared to other algorithms.
 ## 1.6. References:
-https://gist.github.com/YJDave/c9ad61598bbe6d059ef0396b77bbd612
+- https://gist.github.com/YJDave/c9ad61598bbe6d059ef0396b77bbd612
+- https://github.com/AndrewGEvans95/Knapsack/blob/master/solutions/BruteForce.py
 # Algorithm 4: Generic algorithm:
 ## 4.1. Description
 - Genetic Algorithm is about natural selection that is studied in Biology subject.
@@ -128,7 +128,7 @@ https://gist.github.com/YJDave/c9ad61598bbe6d059ef0396b77bbd612
 ### Termination Condition
 - We cannot create generations infinitely as human population or living things in nature. We should set it up a condition as the process of looping about 500 cycles of creating new generation.
 ## 4.2 Pseudo code
-```
+```python
 def solve_genetic_knapsack():
     population = creat_initial_generation()
 
