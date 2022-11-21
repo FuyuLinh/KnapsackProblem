@@ -8,8 +8,6 @@ args = parser.parse_args()
 
 num_file = 5
 
-
-
 def generate(size,num_instances,num_class,capacity):
     path = 'data/'+ size + f'/INPUT_{i}.txt'
     n = num_instances
@@ -28,7 +26,6 @@ def generate(size,num_instances,num_class,capacity):
         file.writerow(value)
         file.writerow(label)
 
-
 if args.size == "small":
     print("Hello small")
     for i in range(1,num_file+1):
@@ -44,6 +41,3 @@ else:
         num_class = [numpy.random.randint(5,11)]
         capacity = [numpy.random.randint(2000,25000)]
         generate(args.size,n,num_class,capacity)
-
-
-    
