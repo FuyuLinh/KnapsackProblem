@@ -13,7 +13,7 @@ class Item:
         self.value = value
 
 def read_txt(size,i):
-    path = '../data/' + size + f'/INPUT_{i}.txt'
+    path = '../data/' + size + '/INPUT_1.txt'
     with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         List = [item for item in csv_reader]
@@ -67,7 +67,7 @@ def brute_force(item, m, Capacity):
     return BValue, resultset
 
 def save_txt(resultset,BValue,size,i):
-    path = '../brute_force/output_'+ size + f'/OUTPUT_{i}.txt'
+    path = "../brute_force/output_" + size + '/OUTPUT_1.txt'
     totalvalue =[BValue]
     found_solution = resultset
     with open(path, mode='w') as filehandle:
@@ -81,7 +81,7 @@ parser.add_argument("index", type=int, help="the index of INPUT file")
 args = parser.parse_args()
 
 if __name__ == '__main__':
-    n,capacity,num_class,weight,value,label = read_txt("small",1)
+    n,capacity,num_class,weight,value,label = read_txt(size=args.size,i=args.index)
     ITEMS =get_items(n[0],weight,value,label)
     BValue,resultset = brute_force(ITEMS,num_class,capacity)
-    save_txt(resultset,BValue,"small",1)
+    save_txt(resultset,BValue,args.size,args.index)
