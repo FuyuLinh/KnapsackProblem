@@ -200,3 +200,6 @@ Output file
 - https://github.com/MohammadAsadolahi/knapsack-problem-solved-with-evolutionary-strategy-Genetic-algorithm-in-python/blob/main/knapsack%20with%20GA.py
 - https://arpitbhayani.me/blogs/genetic-knapsack
 - https://github.com/mohilpatel25/0-1-knapsack-using-genetic-algorithm
+
+# Group workspace:
+Github repository: https://github.com/FuyuLinh/KnapsackProblem
