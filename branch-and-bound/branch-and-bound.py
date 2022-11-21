@@ -39,62 +39,61 @@ def Sort(length, num_class, weight_list, value_list, label_list):
     return getBestInClass(length, num_class, weights, values, labels, keys)
 
 
-def optimistic(values, weights, length):
-    Sum = weights[2]
+def Optimistic(values, weights, length):
+    optimistic_weight = weights[2]
     capacity = weights[0]
     while capacity > weights[1][length - 1] and length > 0:
-        Sum += values[length - 1]
+        optimistic_weight += values[length - 1]
         capacity -= weights[1][length - 1]
         length -= 1
     if length != 0:
-        Sum += int(values[length - 1] * (capacity / weights[1][length - 1]))
-    return Sum
+        optimistic_weight += int(values[length - 1] * (capacity / weights[1][length - 1]))
+    return optimistic_weight
 
 
 def fourth(e):
     return e[0][3]
 
 
-def resolve(capacity, values, Bag, length, result=[], queue=[]):
+def Resolve(capacity, values, Bag, length, result=[], queue=[]):
     if length == 0:
-        return [Bag[2], Bag[3]], result
+        return Bag[2], result
     temp = Bag.copy()
     temp[0] -= Bag[1][length - 1]
     temp[2] += values[length - 1]
-    temp[3] = optimistic(values, Bag, length)
-    Bag[3] = optimistic(values, Bag, length - 1)
+    temp[3] = Optimistic(values, Bag, length)
+    Bag[3] = Optimistic(values, Bag, length - 1)
     if temp[0] >= 0:
         queue += [[Bag, length - 1, result], [temp, length - 1, result + [length]]]
     else:
         queue += [[Bag, length - 1, result]]
     queue = sorted(queue, key=fourth, reverse=True)
     best = queue.pop(0)
-    return resolve(capacity, values, best[0], best[1], best[2], queue)
+    return Resolve(capacity, values, best[0], best[1], best[2], queue)
 
 
-def Proccess(length, capacity, num_class, weight_list, value_list, label_list):
+def PreProccess(length, capacity, num_class, weight_list, value_list, label_list):
     Result, length, Objects = Sort(length, num_class, weight_list, value_list, label_list)
     capacity -= Result[1][0]
     init_Bag = [capacity, Objects[0], 0, 0]
-    final_Bag, key = resolve(capacity, Objects[1], init_Bag, length)
-    for i in key:
-        Result[0].append(Objects[2][i-1])
-    return final_Bag[0]+Result[1][1], Result[0]
+    total_value, final_Bag = Resolve(capacity, Objects[1], init_Bag, length)
+    for item in final_Bag:
+        Result[0].append(Objects[2][item-1])
+    return total_value + Result[1][1], Result[0]
 
 
 def init_data(path):
     with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         List = [item for item in csv_reader]
-        length = List[0]
-        length = int(length[0])
-        capacity = List[1]
+        capacity = List[0]
         capacity = int(capacity[0])
-        num_class = List[2]
+        num_class = List[1]
         num_class = int(num_class[0])
-        weight_list = [int(item) for item in List[3]]
-        value_list = [int(item) for item in List[4]]
-        label_list = [int(item) for item in List[5]]
+        weight_list = [int(item) for item in List[2]]
+        value_list = [int(item) for item in List[3]]
+        label_list = [int(item) for item in List[4]]
+        length = len(weight_list)
     csv_file.close()
     return length, capacity, num_class, weight_list, value_list, label_list
 
@@ -102,7 +101,7 @@ def init_data(path):
 def saveResult(data_path, output_path):
     x = time.time()
     length, capacity, num_class, weight_list, value_list, label_list = init_data(data_path)
-    Result = Proccess(length, capacity, num_class, weight_list, value_list, label_list)
+    Result = PreProccess(length, capacity, num_class, weight_list, value_list, label_list)
     w = time.time()
     list = [0 for i in range(length)]
     for i in Result[1]:
@@ -114,11 +113,12 @@ def saveResult(data_path, output_path):
                 f.write(str(list[i]) + "\n")
             else:
                 f.write(str(list[i]) + ",")
-        f.write(str((w - x) * 1000) + "ms \n")
     f.close()
+    print(data_path + ': ' + str((w - x) * 1000) + "ms \n")
 
 
 if __name__ == '__main__':
-    data_path = './data/large/INPUT_1.txt'
-    output_path = './output/output.txt'
+    i = 1
+    data_path = './data/large/INPUT_'+str(i)+'.txt'
+    output_path = './output/large/OUTPUT_'+str(i)+'.txt'
     saveResult(data_path, output_path)
