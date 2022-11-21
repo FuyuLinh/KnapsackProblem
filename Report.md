@@ -4,7 +4,7 @@ Report of Group's Project 01
 1. Nguyễn Hà Ngọc Linh - 20125061
 2. Phạm Thanh Tú - 20125121
 3. Phan Huỳnh Tấn Phát - 20125047
-4. Phạm Quốc Thiệu - 20125114
+4. Phạm Quốc Thiệu - 20125115
 ## Assignment plan:
 Each individual will hold one algorithm to solve the problem. The whole work for one algorithm includes:
 - Implementation
