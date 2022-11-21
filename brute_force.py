@@ -1,6 +1,8 @@
 # Algorithm 01: Brute Force Searching
 # Capacity: W(kgs); Number for class: m
 # Dataset: n items, each have value v_i, a class c_i, and weight w_i: item[(v_i1, c_i1, w_i1),...]
+from typing import List
+# from read import read_txt
 import csv
 import argparse
 
@@ -11,8 +13,8 @@ class Item:
         self.value = value
 
 def read_txt(size,i):
-    path = '../data/' + size + f'/INPUT_{i}.txt'
-    with open(path) as csv_file:
+    # path = 'data/' + size + f'/INPUT_{i}.txt'
+    with open("D:\FUYU LINH\Document\YEAR 3\SEM 1\ARTIFICIAL INTELLIGENT\Projects\KnapsackProblem\data\small\INPUT_1.txt") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         List = [item for item in csv_reader]
         n = [int(item) for item in List[0]]
@@ -64,16 +66,22 @@ def brute_force(item, m, Capacity):
         resultset.append("0")
     return BValue, resultset
 
-#item = [(85, 79, 1),(26, 32, 1),(48, 47, 2),(21, 18, 1),(22, 26, 2),(95, 85, 1),(43, 33, 1),(45, 40, 2),(55, 45, 2),(52, 59, 2)]
-#m = 2
-#Capacity = 101
-#brute_force(item, m, Capacity)
-parser = argparse.ArgumentParser()
-parser.add_argument("size", type=str, help="the size")
-parser.add_argument("index", type=int, help="the index of INPUT file")
-args = parser.parse_args()
+def save_txt(resultset,BValue,size,i):
+    path = ''+ size + f'/OUTPUT_{i}.txt'
+    totalvalue =[BValue]
+    found_solution = resultset
+    with open(path, mode='w') as filehandle:
+        file = csv.writer(filehandle, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        file.writerow(totalvalue)
+        file.writerow(found_solution)
+
+#parser = argparse.ArgumentParser()
+#parser.add_argument("size", type=str, help="the size")
+#parser.add_argument("index", type=int, help="the index of INPUT file")
+#args = parser.parse_args()
 
 if __name__ == '__main__':
-    n,capacity,num_class,weight,value,label = read_txt(size=args.size,i=args.index)
+    n,capacity,num_class,weight,value,label = read_txt("small",1)
     ITEMS =get_items(n[0],weight,value,label)
-    brute_force(ITEMS,num_class,capacity)
+    BValue,resultset = brute_force(ITEMS,num_class,capacity)
+    save_txt(resultset,BValue,"small",1)
