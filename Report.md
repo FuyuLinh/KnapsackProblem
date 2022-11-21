@@ -24,11 +24,11 @@ Completed works:
 - Implementation
 - Showing videos of process
 - Writing reports about the algorithms
-
-Incompleted works:
 - Running Test cases: Since brute-force cannot optimize time for the problem, it takes one test case with only 10 items up to 1 hour to complete generating output file. Hence we cannot generate all test cases.
+- 
+Incompleted works: None recorded
 
-Completion level: 7.5/10
+Completion level: 9.5/10
 ### 2. Genetic algorithm:
 Completed works:
 - Implementation
