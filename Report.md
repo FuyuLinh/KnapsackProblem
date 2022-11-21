@@ -87,7 +87,7 @@ However brute force can only generate small datasets, we run the test case of 10
 This algorithm can help solving Knapsack problem with small datasets. However when facing with bigger datasets, the time to execute this algorithm will be much longer compared to other algorithms.
 ## 1.6. References:
 https://gist.github.com/YJDave/c9ad61598bbe6d059ef0396b77bbd612
-# Algorithm 4: Generic algorithm for KNAPSACK 
+# Algorithm 4: Generic algorithm:
 ## 4.1. Description
 - Genetic Algorithm is about natural selection that is studied in Biology subject.
 - Any elements that can adapt to the changes will continue to go further and reproduce to go to next generation.
