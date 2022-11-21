@@ -202,4 +202,6 @@ Output file
 - https://github.com/mohilpatel25/0-1-knapsack-using-genetic-algorithm
 
 # Group workspace:
-Github repository: https://github.com/FuyuLinh/KnapsackProblem
+- Github repository: https://github.com/FuyuLinh/KnapsackProblem
+- Video demo process (Link Google Drive): https://drive.google.com/drive/folders/1RyPIzK3kiCHfyBXLixnJJDor9oZmkT-G?usp=sharing
+- 
