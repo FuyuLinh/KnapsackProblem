@@ -1,42 +1,6 @@
 import csv
 import time
-
-
-def getBestInClass(length, num_class, weights, values, labels, keys):
-    contained = [0, 0]
-    class_uncomplete = []
-    res = []
-    for i in range(num_class):
-        class_uncomplete.append(1)
-    x = length - 1
-    while x > 0:
-        if len(res) != num_class:
-            if class_uncomplete[labels[x] - 1] == 1:
-                res.append(keys[x])
-                contained[0] += weights[x]
-                contained[1] += values[x]
-                del weights[x]
-                del values[x]
-                del keys[x]
-                class_uncomplete[labels[x] - 1] = 0
-                del labels[x]
-            x = x - 1
-        else:
-            break
-    return [res,contained], length - num_class, [weights, values, keys]
-
-
-def Sort(length, num_class, weight_list, value_list, label_list):
-    def ratio(e):
-        return e[1] / e[0]
-
-    X = [[weight_list[x], value_list[x], label_list[x], x] for x in range(length)]
-    Y = sorted(X, key=ratio)
-    weights = [Y[x][0] for x in range(length)]
-    values = [Y[x][1] for x in range(length)]
-    labels = [Y[x][2] for x in range(length)]
-    keys = [Y[x][3] for x in range(length)]
-    return getBestInClass(length, num_class, weights, values, labels, keys)
+import SortList
 
 
 def Optimistic(values, weights, length):
@@ -51,11 +15,10 @@ def Optimistic(values, weights, length):
     return optimistic_weight
 
 
-def fourth(e):
-    return e[0][3]
-
-
 def Resolve(capacity, values, Bag, length, result=[], queue=[]):
+    def fourth(e):
+        return e[0][3]
+
     if length == 0:
         return Bag[2], result
     temp = Bag.copy()
@@ -73,12 +36,12 @@ def Resolve(capacity, values, Bag, length, result=[], queue=[]):
 
 
 def PreProccess(length, capacity, num_class, weight_list, value_list, label_list):
-    Result, length, Objects = Sort(length, num_class, weight_list, value_list, label_list)
+    Result, length, Objects = SortList.Sort(length, num_class, weight_list, value_list, label_list)
     capacity -= Result[1][0]
     init_Bag = [capacity, Objects[0], 0, 0]
     total_value, final_Bag = Resolve(capacity, Objects[1], init_Bag, length)
     for item in final_Bag:
-        Result[0].append(Objects[2][item-1])
+        Result[0].append(Objects[2][item - 1])
     return total_value + Result[1][1], Result[0]
 
 
@@ -105,20 +68,23 @@ def saveResult(data_path, output_path):
     w = time.time()
     list = [0 for i in range(length)]
     for i in Result[1]:
-        list[i]=1
-    with open(output_path, 'a') as f:
+        list[i] = 1
+    with open(output_path, 'w') as f:
         f.write(str(Result[0]) + "\n")
         for i in range(length):
-            if i == length-1:
+            if i == length - 1:
                 f.write(str(list[i]) + "\n")
             else:
                 f.write(str(list[i]) + ",")
     f.close()
-    print(data_path + ': ' + str((w - x) * 1000) + "ms \n")
+    with open('./experiments/experiment.txt', 'a') as ex:
+        ex.write(str(length) + "," + str(w - x) + '\n')
+    f.close()
 
 
 if __name__ == '__main__':
-    i = 1
-    data_path = './data/large/INPUT_'+str(i)+'.txt'
-    output_path = './output/large/OUTPUT_'+str(i)+'.txt'
+    type = 'large'
+    i = 4
+    data_path = './data/' + type + '/INPUT_' + str(i) + '.txt'
+    output_path = './output/' + type + '/OUTPUT_' + str(i) + '.txt'
     saveResult(data_path, output_path)
