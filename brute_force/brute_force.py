@@ -28,7 +28,7 @@ def read_txt(size,i):
         weight = [int(item) for item in List[2]]
         value = [int(item) for item in List[3]]
         label = [int(item) for item in List[4]]
-        n = len(weight)
+        n = [len(weight)]
     return capacity,num_class,weight,value,label
 
 def get_items(n,weight,value,label):
