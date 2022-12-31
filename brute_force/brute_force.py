@@ -23,13 +23,13 @@ def read_txt(size,i):
     with open(path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         List = [item for item in csv_reader]
-        n = [int(item) for item in List[0]]
-        capacity = [int(item) for item in List[1]]
-        num_class = [int(item) for item in List[2]]
-        weight = [int(item) for item in List[3]]
-        value = [int(item) for item in List[4]]
-        label = [int(item) for item in List[5]]
-    return n,capacity,num_class,weight,value,label
+        capacity = [int(item) for item in List[0]]
+        num_class = [int(item) for item in List[1]]
+        weight = [int(item) for item in List[2]]
+        value = [int(item) for item in List[3]]
+        label = [int(item) for item in List[4]]
+        n = len(weight)
+    return capacity,num_class,weight,value,label
 
 def get_items(n,weight,value,label):
     items = []
